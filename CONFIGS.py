@@ -6,7 +6,7 @@ from kivy.utils import platform
 if platform == 'android':
     STEP_SIZE = 150
 else:
-    STEP_SIZE = 65
+    STEP_SIZE = 50
 
 # snake speed
 TIME_STEP = 0.3

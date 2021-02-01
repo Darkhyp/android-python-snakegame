@@ -2,7 +2,16 @@ from kivy.uix.widget import Widget
 from kivy.vector import Vector
 from kivy.properties import StringProperty, NumericProperty, ListProperty
 
-from CONFIGS import STEP_SIZE
+from CONFIGS import STEP_SIZE, SNAKE_THEME
+
+# list of images for snake parts
+SNAKE_PART_IMAGES = [
+    f"assets/images/{SNAKE_THEME}.snake_head0.png",
+    f"assets/images/{SNAKE_THEME}.snake_head.png",
+    f"assets/images/{SNAKE_THEME}.snake_body.png",
+    f"assets/images/{SNAKE_THEME}.snake_angle.png",
+    f"assets/images/{SNAKE_THEME}.snake_tail.png"
+]
 
 
 class SnakePart(Widget):
@@ -18,17 +27,9 @@ class SnakePart(Widget):
 
     def change_image(self, part_type=0):
         self.part_type = part_type
-        if part_type == 0:
-            self.image_source = "assets/images/snake_head0.png"
-        elif part_type == 1:
-            self.image_source = "assets/images/snake_head.png"
-        elif part_type == 2:
-            self.image_source = "assets/images/snake_body.png"
-        elif part_type == 3:
-            self.image_source = "assets/images/snake_angle.png"
-        elif part_type == 4:
-            self.image_source = "assets/images/snake_tail.png"
-        else:
+        try:
+            self.image_source = SNAKE_PART_IMAGES[part_type]
+        except Exception as e:
             self.image_source = ""
 
     def rotate_image(self, angle):

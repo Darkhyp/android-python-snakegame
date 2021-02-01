@@ -17,16 +17,13 @@ class MainApp(MDApp):
         return self.screen
 
     def on_start(self):
-        # change snack position
-        snack = self.root.ids.snack
-        snack.size = [STEP_SIZE, STEP_SIZE]
-        new_random_unique_position([], snack)
-
         # start new game
-        self.root.new_game()
+        game = self.root
+        game.set_game_window()
+        game.new_game()
 
         # init main loop
-        Clock.schedule_interval(self.root.move_snake, TIME_STEP)
+        Clock.schedule_interval(game.move_snake, TIME_STEP)
 
 
 MainApp().run()
